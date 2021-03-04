@@ -24,8 +24,6 @@ def run(n, dist='uniform', metric='euclidean', seed=0):
 
     # Plotting instance and solution
     plotter = Plotter(instance)
-    
-    plotter.load_data()
     plotter.load_data(solution.route_arcs)
     plt.show()
 

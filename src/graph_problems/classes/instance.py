@@ -62,8 +62,3 @@ class Instance:
             (i, j): np.linalg.norm(i.pos - j.pos, 1) for i, j in permutations(nodes, 2)
         }
         return costs
-
-    
-
-
-    
