@@ -1,7 +1,7 @@
 import numpy as np
 from itertools import permutations
 
-from classes.node import Node
+from src.graph_problems.classes.node import Node
 
 class Instance:
     def __init__(self, id, n, seed):
