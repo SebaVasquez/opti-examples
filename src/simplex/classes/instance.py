@@ -5,4 +5,4 @@ class SimplexInstance:
         self.A = matrix(args['A'])
         self.b = array(args['b'])
         self.c = array(args['c'])
-        self.IBase = array(args['IBase'])
+        self.IBase = args['IBase']

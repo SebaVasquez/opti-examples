@@ -72,10 +72,10 @@ class Simplex:
         return self.A_B_inverse
 
     def _get_new_Base(self, Base, incoming_idx, outgoing_idx):
-        new_B = list(Base)
+        new_B = Base
         new_B.remove(outgoing_idx)
         new_B.append(incoming_idx)
-        return array(sorted(new_B))
+        return new_B
     
     def _set_B(self, new_B):
         self.B = new_B
@@ -86,11 +86,17 @@ class Simplex:
         else:
             return False
     
+    def _check_multiplicity(self, reduced_costs):
+        if any([i == 0 for i in reduced_costs]):
+            return True
+        else:
+            return False
+    
     def _to_vector(self, matrix):
         return squeeze(array(matrix))
     
     def run(self):
-        iter = 0
+        iter = 1
         optimal = False
         while iter <= 20:
             print('Executing iter', iter)
@@ -107,9 +113,15 @@ class Simplex:
             print('\t\tReduced costs =', reduced_costs)
             
             if self._check_optimality(reduced_costs):
-                print('Optimal solution found!')
-                print('Optimal solution:', solution)
-                print('Optimal objetive value:', cost)
+                if self._check_multiplicity(reduced_costs):
+                    status += '-multiple_solutions'
+                    print('\tMultiple optimal solutions found!')
+                    print('\tAn optimal solution:', solution)
+                else:
+                    print('\tUnique optimal solution found!')
+                    print('\tOptimal solution:', solution)
+                
+                print('\tOptimal objetive value:', cost)
                 optimal = True
                 break
             
@@ -124,7 +136,7 @@ class Simplex:
             print('\tBuilding new base...')
             new_B = self._get_new_Base(self.B, incoming_idx, outgoing_idx)
             self._set_B(new_B)
-            print('\t\tNew base:', self.B)
+            print('\t\tNew base: {}\n'.format(self.B))
             iter += 1
         
         return iter, optimal
