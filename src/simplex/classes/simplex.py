@@ -57,9 +57,9 @@ class Simplex:
         A_bar = self._to_vector(self.A_B_inverse @ self.A[:, incoming_index])
         radios = [i if i >= 0 else infty for i in b_bar / A_bar]
         
-        try: 
+        if self._check_boundary(radios): 
             return self.B[argmin(radios)]
-        except:
+        else:
             return None
     
     def _get_incoming_idx(self, reduced_costs):
@@ -92,6 +92,12 @@ class Simplex:
         else:
             return False
     
+    def _check_boundary(self, radios):
+        if all([i == infty for i in radios]):
+            return False
+        else:
+            return True
+    
     def _to_vector(self, matrix):
         return squeeze(array(matrix))
     
@@ -101,7 +107,7 @@ class Simplex:
         while iter <= 20:
             print('Executing iter', iter)
             print('\tUsing B =', self.B)
-            A_B_inverse = self._set_A_B_inverse()
+            self._set_A_B_inverse()
             print('\tComputing new solution...')
             solution, status, cost = self.solution
             print('\t\tActual solution:', round(solution, 2))
@@ -131,6 +137,9 @@ class Simplex:
 
             print('\t\tChecking outgoing variable...')
             outgoing_idx = self._get_outgoing_idx(incoming_idx)
+            if not outgoing_idx:
+                print('\t\t\tUnbounded problem!')
+                break
             print('\t\t\tOutgoing variable index:', outgoing_idx)
 
             print('\tBuilding new base...')
