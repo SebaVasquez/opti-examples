@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('tkAgg')
 from argparse import ArgumentParser
 import os, sys
 sys.path.append(os.getcwd())
@@ -24,6 +26,8 @@ def run(n, dist='uniform', metric='euclidean', seed=0):
 
     # Plotting instance and solution
     plotter = Plotter(instance)
+    plotter.load_data()
+    plt.show()
     plotter.load_data(solution.route_arcs)
     plt.show()
 
