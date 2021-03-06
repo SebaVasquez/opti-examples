@@ -19,14 +19,14 @@ class Simplex:
                 solution[idx] = solution_B.pop(0)
 
         if all([i >= 0 for i in solution]):
-            status = 'Feasible'
+            feasibility = True
         else: 
-            status = 'Infeasible'
+            feasibility = False
 
         solution = array(solution)
         cost = solution @ self.c
 
-        return solution, status, cost
+        return solution, feasibility, cost
     
     @property
     def N(self):
@@ -111,7 +111,10 @@ class Simplex:
             print('\tComputing new solution...')
             solution, status, cost = self.solution
             print('\t\tActual solution:', round(solution, 2))
-            print('\t\tSolution status:', status)
+            if not status:
+                print('\t\tInfeasible base used!')
+                break
+            print('\t\tSolution feasible?:', status)
             print('\t\tObjective value:', cost)
             
             print('\tComputing reduced costs...')
