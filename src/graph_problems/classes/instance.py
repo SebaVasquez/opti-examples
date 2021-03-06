@@ -3,7 +3,7 @@ from itertools import permutations
 
 from src.graph_problems.classes.node import Node
 
-class Instance:
+class GraphInstance:
     def __init__(self, id, n, seed):
         self.id = str(id)
         self.n = n

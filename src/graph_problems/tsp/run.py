@@ -3,14 +3,14 @@ from argparse import ArgumentParser
 import os, sys
 sys.path.append(os.getcwd())
 
-from src.graph_problems.classes.instance import Instance
+from src.graph_problems.classes.instance import GraphInstance
 from src.graph_problems.classes.solution import GraphSolution
 from src.graph_problems.tsp.model.model import TSP
 from src.graph_problems.plotter.plotter import Plotter
 
 def run(n, dist='uniform', metric='euclidean', seed=0):
     # Instance generation
-    instance = Instance('-'.join([str(n), dist, metric]), n, seed=seed)
+    instance = GraphInstance('-'.join([str(n), dist, metric]), n, seed=seed)
     instance.dist = dist
     instance.metric = metric
     instance.generate_instance()
