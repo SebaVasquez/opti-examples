@@ -1,0 +1,4 @@
+--extra-index-url https://pypi.gurobi.com
+matplotlib==3.3.4
+networkx==2.5
+gurobipy
