@@ -4,13 +4,13 @@ This repo contains various examples of models and solution methods seen in class
 
 ## Code execution from terminal
 
-The related dependencies are available in the requierements.txt file. To install them, execute the following command. Some licence paid dependencies, such as gurobupy, could be required.
+The related dependencies are available in the requierements.txt file. To install them, execute the following command. Some dependencies require a paid licence, such as gurobipy. To display some graphics, tkinter or some other GUI is needed.
 
 ```
 pip install -r requirements.txt
 ```
 
-To run and example, place at the root directory and execute the following command
+To run an example, place at the root directory and execute the following command
 
 ```
 python src/<problem_class>/<problem>/run.py
