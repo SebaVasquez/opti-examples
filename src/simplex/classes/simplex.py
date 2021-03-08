@@ -14,9 +14,8 @@ class Simplex:
     def solution(self):
         solution_B = list(self._to_vector((self.A_B_inverse @ self.b)))
         solution = [0 for i in range(self.n)]
-        for idx in range(self.n):
-            if idx in self.B:
-                solution[idx] = solution_B.pop(0)
+        for idx in self.B:
+            solution[idx] = solution_B.pop(0)
 
         if all([i >= 0 for i in solution]):
             feasibility = True
