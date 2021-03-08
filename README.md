@@ -16,7 +16,7 @@ To run an example, place at the root directory and execute the following command
 python src/<problem_class>/<problem>/run.py
 ```
 
-where `<problem_class>` and `<problem>` are options elegibles from the following table.
+where `<problem_class>` and `<problem>` are options elegible from the following table.
 
 **--> Insert table here <--**
 
