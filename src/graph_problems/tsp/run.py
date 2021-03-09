@@ -7,8 +7,8 @@ sys.path.append(os.getcwd())
 
 from src.graph_problems.classes.instance import GraphInstance
 from src.graph_problems.classes.solution import GraphSolution
-from src.graph_problems.tsp.model.model import TSP
-from src.graph_problems.plotter.plotter import Plotter
+from src.graph_problems.tsp.model.model import TSPModel
+from src.graph_problems.tsp.plotter.plotter import Plotter
 
 def run(n, dist='uniform', metric='euclidean', seed=0):
     # Instance generation
@@ -18,7 +18,7 @@ def run(n, dist='uniform', metric='euclidean', seed=0):
     instance.generate_instance()
 
     # Model generation
-    model = TSP(instance)
+    model = TSPModel(instance)
 
     # Solving
     model.solve()
@@ -26,10 +26,8 @@ def run(n, dist='uniform', metric='euclidean', seed=0):
 
     # Plotting instance and solution
     plotter = Plotter(instance)
-    plotter.load_data()
-    plt.show()
     plotter.load_data(solution.route_arcs)
-    plt.show()
+    plotter.plot()
 
 if __name__ == '__main__':
     parser = ArgumentParser()

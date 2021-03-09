@@ -1,7 +1,7 @@
 from gurobipy import Model, GRB, quicksum
 from itertools import combinations
 
-class TSP:
+class TSPModel:
     def __init__(self, instance):
         self.instance = instance
         self.model = Model()
