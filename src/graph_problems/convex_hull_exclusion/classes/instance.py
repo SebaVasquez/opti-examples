@@ -1,11 +1,12 @@
 import numpy as np
 
-from src.graph_problems.classes.instance import GraphInstance
+#from src.graph_problems.classes.instance import GraphInstance
 from src.graph_problems.classes.node import Node
 
-class Instance(GraphInstance):
+class Instance:
     def __init__(self, k, n, seed):
-        super().__init__(None, n, seed=seed)
+        self.nodes = list()
+        self.n = n
         self.k = k
         self.node_to_verify = None
         self._generate_nodes()

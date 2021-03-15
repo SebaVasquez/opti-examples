@@ -1,5 +1,5 @@
 
-class GraphSolution:
+class Solution:
     def __init__(self, vars):
         self.vars = vars
         self.route_arcs = self._get_route_arcs(vars)

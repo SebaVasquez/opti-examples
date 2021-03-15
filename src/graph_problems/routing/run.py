@@ -5,14 +5,14 @@ from argparse import ArgumentParser
 import os, sys
 sys.path.append(os.getcwd())
 
-from src.graph_problems.classes.instance import GraphInstance
-from src.graph_problems.classes.solution import GraphSolution
+from src.graph_problems.routing.classes.instance import Instance
+from src.graph_problems.routing.classes.solution import Solution
 from src.graph_problems.routing.model.model import RoutingModel
 from src.graph_problems.routing.plotter.plotter import Plotter
 
 def run(problem, n, metric, fleet, depot, seed, dist='uniform'):
     # Instance generation
-    instance = GraphInstance('-'.join([str(n), dist, metric]), n, fleet, seed)
+    instance = Instance('-'.join([str(n), dist, metric]), n, fleet, seed)
     instance.dist = dist
     instance.metric = metric
     instance.generate_instance(depot)
@@ -23,7 +23,7 @@ def run(problem, n, metric, fleet, depot, seed, dist='uniform'):
 
     # Solving
     vars = model.solve()
-    solution = GraphSolution(vars)
+    solution = Solution(vars)
 
     # Plotting instance and solution
     plotter = Plotter(instance)
