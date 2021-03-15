@@ -5,7 +5,7 @@ from src.graph_problems.classes.node import Node
 
 class Instance(GraphInstance):
     def __init__(self, k, n, seed):
-        super().__init__(None, n, seed)
+        super().__init__(None, n, seed=seed)
         self.k = k
         self.node_to_verify = None
         self._generate_nodes()

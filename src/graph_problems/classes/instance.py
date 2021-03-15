@@ -4,13 +4,15 @@ from itertools import permutations
 from src.graph_problems.classes.node import Node
 
 class GraphInstance:
-    def __init__(self, id, n, seed):
+    def __init__(self, id, n, fleet=1, seed=0):
         self.id = str(id)
         self.n = n
         self.seed = np.random.seed(seed)
         self.nodes = list()
+        self.depot = None
         self.costs = dict()
-    
+        self.fleet = fleet
+
     def __str__(self):
         return self.id
 
@@ -38,8 +40,9 @@ class GraphInstance:
         }
         self._metric = metric_dict.get(new_metric, 'euclidean')
     
-    def generate_instance(self):
+    def generate_instance(self, depot):
         self.nodes, self.costs = self._generate_data()
+        self.depot = self.nodes[depot]
 
     def _generate_data(self):
         pos = self._dist(0, 100, size=(self.n, 2))

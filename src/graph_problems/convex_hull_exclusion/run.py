@@ -35,6 +35,6 @@ if __name__ == '__main__':
 
     nodes = args.k or 6
     dimension = args.n or 2
-    seed = args.seed or 2
+    seed = args.seed or 0
 
     run(nodes, dimension, seed)

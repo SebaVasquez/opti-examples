@@ -7,22 +7,23 @@ sys.path.append(os.getcwd())
 
 from src.graph_problems.classes.instance import GraphInstance
 from src.graph_problems.classes.solution import GraphSolution
-from src.graph_problems.tsp.model.model import TSPModel
-from src.graph_problems.tsp.plotter.plotter import Plotter
+from src.graph_problems.routing.model.model import RoutingModel
+from src.graph_problems.routing.plotter.plotter import Plotter
 
-def run(n, dist='uniform', metric='euclidean', seed=0):
+def run(problem, n, metric, fleet, depot, seed, dist='uniform'):
     # Instance generation
-    instance = GraphInstance('-'.join([str(n), dist, metric]), n, seed=seed)
+    instance = GraphInstance('-'.join([str(n), dist, metric]), n, fleet, seed)
     instance.dist = dist
     instance.metric = metric
-    instance.generate_instance()
+    instance.generate_instance(depot)
 
     # Model generation
-    model = TSPModel(instance)
+    model = RoutingModel(instance)
+    model.problem = problem
 
     # Solving
-    model.solve()
-    solution = GraphSolution(model.vars)
+    vars = model.solve()
+    solution = GraphSolution(vars)
 
     # Plotting instance and solution
     plotter = Plotter(instance)
@@ -32,6 +33,10 @@ def run(n, dist='uniform', metric='euclidean', seed=0):
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument(
+        '-p', '--problem', 
+        type=str,
+        help='Problem to solve')
+    parser.add_argument(
         '-n', '--nodes', 
         type=int,
         help='Number of nodes')
@@ -40,13 +45,24 @@ if __name__ == '__main__':
         type=str,
         help='Metric to use when calculating arcs weigth')
     parser.add_argument(
+        '-f', '--fleet', 
+        type=int,
+        help='Fleet size')
+    parser.add_argument(
+        '-d', '--depot', 
+        type=int,
+        help='Depot node index')
+    parser.add_argument(
         '-s', '--seed', 
         type=int,
         help='Random seed to generate instance')
     args = parser.parse_args()
 
-    nodes = args.nodes or 10
+    problem = args.problem or 'vrp'
+    nodes = args.nodes or 12
     metric = args.metric or 'euclidean'
+    fleet = args.fleet or 1
+    depot = args.depot or 0
     seed = args.seed or 0
 
-    run(nodes, metric=metric, seed=seed)
+    run(problem, nodes, metric, fleet, depot, seed)
