@@ -27,6 +27,7 @@ def run(problem, n, metric, fleet, depot, seed, dist='uniform'):
 
     # Plotting instance and solution
     plotter = Plotter(instance)
+    print('\nSolution arcs:\n{}'.format(solution.route_arcs))
     plotter.load_data(solution.route_arcs)
     plotter.plot()
 
