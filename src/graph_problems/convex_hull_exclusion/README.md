@@ -8,4 +8,4 @@ Write a program that, given positive integers $n, k$:
 
     * For any ![eq3](https://latex.codecogs.com/gif.download?i%20%3D%201%2C%20%5Cldots%2C%20k), verify if ![eq4](https://latex.codecogs.com/gif.download?x%5Ei) belongs to ![eq5](https://latex.codecogs.com/gif.download?P%5Ei%20%3A%3D%20%5Ctext%7Bconv%7D%28S%20%5Csetminus%20%5C%7Bx%5Ei%5C%7D%29). If it does not, return a plane that separates it. \texttt{Hint:} Use Farkas Lemma properly.
 
-    * For ![eq6](https://latex.codecogs.com/gif.download?n%20%3D%202), also return a graphical representation of the solution.
+    * For ![eq6](https://latex.codecogs.com/gif.latex?n=2), also return a graphical representation of the solution.
